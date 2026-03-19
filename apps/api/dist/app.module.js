@@ -14,6 +14,13 @@ const roast_controller_1 = require("./roast.controller");
 const roast_service_1 = require("./roast.service");
 const serve_static_1 = require("@nestjs/serve-static");
 const path_1 = require("path");
+const fs_1 = require("fs");
+const staticPath = (0, path_1.join)(__dirname, '..', '..', '..', 'apps', 'web', 'dist', 'web', 'browser');
+console.log('[DEBUG] Static rootPath =', staticPath);
+console.log('[DEBUG] index.html exists?', (0, fs_1.existsSync)((0, path_1.join)(staticPath, 'index.html')));
+if ((0, fs_1.existsSync)(staticPath)) {
+    console.log('[DEBUG] Contents:', (0, fs_1.readFileSync)((0, path_1.join)(staticPath, 'index.html'), 'utf-8').substring(0, 200));
+}
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -21,7 +28,7 @@ exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             serve_static_1.ServeStaticModule.forRoot({
-                rootPath: (0, path_1.join)(__dirname, '..', '..', '..', 'apps', 'web', 'dist', 'web', 'browser'),
+                rootPath: staticPath,
                 exclude: ['/api*'],
             }),
         ],
