@@ -4,6 +4,8 @@ services:
     env: node
     buildCommand: |
       npm ci
+      npm --prefix apps/api ci
+      npm --prefix apps/web ci
       npm run build
     startCommand: npm --prefix apps/api run start:prod
     envVars:
