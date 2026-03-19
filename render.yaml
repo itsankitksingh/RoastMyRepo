@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: roastmyrepo
+    env: node
+    buildCommand: |
+      npm ci
+      npm run build
+    startCommand: npm --prefix apps/api run start:prod
+    envVars:
+      - key: GROQ_API_KEY
+        fromSecret: groqApiKey
+      - key: GITHUB_TOKEN
+        fromSecret: githubToken
+        optional: true
+      - key: PORT
+        value: 10000
+    healthCheckPath: /health
+    plan: free

@@ -40,7 +40,7 @@ export class App {
   protected loading = false;
   protected error = '';
   protected roast: RoastResponse | null = null;
-  protected readonly apiUrl = 'http://localhost:3000/api/roast';
+  protected readonly apiUrl = '/api/roast';
 
   protected submit() {
     const clean = this.username
