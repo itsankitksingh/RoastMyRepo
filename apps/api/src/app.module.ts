@@ -9,7 +9,7 @@ import { join } from 'path';
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', '..', '..', 'apps', 'web', 'dist', 'web', 'browser'),
+      rootPath: join(process.cwd(), 'apps', 'web', 'dist', 'web', 'browser'),
       exclude: ['/api*'],
     }),
   ],

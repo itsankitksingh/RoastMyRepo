@@ -7,6 +7,11 @@ services:
       npm --prefix apps/api install --include=dev
       npm --prefix apps/web install --include=dev
       npm run build
+      # Verify build output
+      echo "=== Checking Angular build output ==="
+      ls -la apps/web/dist/web/browser/ || echo "Angular build output missing!"
+      echo "=== Contents of index.html ==="
+      head -20 apps/web/dist/web/browser/index.html || echo "Cannot read index.html"
     startCommand: npm --prefix apps/api run start:prod
     envVars:
       - key: GROQ_API_KEY
