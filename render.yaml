@@ -3,9 +3,9 @@ services:
     name: roastmyrepo
     env: node
     buildCommand: |
-      npm ci
-      npm --prefix apps/api ci
-      npm --prefix apps/web ci
+      npm install --include=dev
+      npm --prefix apps/api install --include=dev
+      npm --prefix apps/web install --include=dev
       npm run build
     startCommand: npm --prefix apps/api run start:prod
     envVars:
