@@ -1,0 +1,65 @@
+<main class="page">
+  <section class="hero">
+    <p class="eyebrow">GitRoast</p>
+    <h1>Will AI Replace You?</h1>
+    <p class="subtitle">
+      Enter a GitHub username and get an algorithmic threat score plus a brutally honest AI roast.
+    </p>
+
+    <form class="roast-form" (ngSubmit)="submit()">
+      <input
+        type="text"
+        name="username"
+        [(ngModel)]="username"
+        placeholder="github.com/username"
+        [disabled]="loading"
+      />
+      <button type="submit" [disabled]="loading || !username.trim()">
+        {{ loading ? 'Analyzing...' : 'Roast Me' }}
+      </button>
+    </form>
+
+    <p class="error" *ngIf="error">{{ error }}</p>
+  </section>
+
+  <section class="result" *ngIf="roast">
+    <div class="profile">
+      <img [src]="roast.avatarUrl" [alt]="roast.username" />
+      <div>
+        <h2>{{ roast.name }}</h2>
+        <p class="meta">{{ roast.username }} | {{ roast.followers }} followers | {{ roast.publicRepos }} repos</p>
+      </div>
+    </div>
+
+    <div class="score-wrap">
+      <p class="label">AI THREAT LEVEL</p>
+      <p class="score">{{ roast.overallScore.toFixed(1) }}<span>/10</span></p>
+      <p class="threat">{{ roast.threatTitle }}</p>
+    </div>
+
+    <p class="roast-text">{{ roast.mainRoast }}</p>
+
+    <div class="subscores">
+      <article>
+        <h3>Technical Skills</h3>
+        <p class="mini-score">{{ roast.subScores.technicalSkills.score.toFixed(1) }}/10</p>
+        <p>{{ roast.subScores.technicalSkills.description }}</p>
+      </article>
+      <article>
+        <h3>AI Adaptability</h3>
+        <p class="mini-score">{{ roast.subScores.aiAdaptability.score.toFixed(1) }}/10</p>
+        <p>{{ roast.subScores.aiAdaptability.description }}</p>
+      </article>
+      <article>
+        <h3>Career Moat</h3>
+        <p class="mini-score">{{ roast.subScores.careerMoat.score.toFixed(1) }}/10</p>
+        <p>{{ roast.subScores.careerMoat.description }}</p>
+      </article>
+      <article>
+        <h3>Market Positioning</h3>
+        <p class="mini-score">{{ roast.subScores.marketPositioning.score.toFixed(1) }}/10</p>
+        <p>{{ roast.subScores.marketPositioning.description }}</p>
+      </article>
+    </div>
+  </section>
+</main>

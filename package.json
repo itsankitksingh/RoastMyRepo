@@ -1,0 +1,15 @@
+{
+  "name": "gitroast",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:web\"",
+    "dev:web": "npm --prefix apps/web run start",
+    "dev:api": "npm --prefix apps/api run start:dev",
+    "build": "npm --prefix apps/api run build && npm --prefix apps/web run build",
+    "start": "npm --prefix apps/api run start:prod"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
