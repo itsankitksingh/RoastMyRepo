@@ -1,8 +1,5 @@
-# GitRoast (Angular + NestJS)
+# GitRoast (NestJS)
 
-GitRoast has been migrated from Next.js to:
-
-- Angular 20 frontend (`apps/web`)
 - NestJS backend on Node.js (`apps/api`)
 
 The backend exposes `POST /api/roast` and keeps the GitHub analysis + Groq roast generation flow.
